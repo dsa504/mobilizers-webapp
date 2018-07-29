@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-yellow.min.css" />
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.js"></script>
+    <!--
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/es-us.js"></script>
+    -->
+    <?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+  <body>
+  
+  <div class="scrim"></div>
+  <div class="login">
+    <h2>Login</h2>
+    <div class="mdl-textfield mdl-js-textfield">
+      <input class="mdl-textfield__input" type="text" id="pw">
+      <label class="mdl-textfield__label" for="sample1">Password</label>
+    </div>
+    <div style="text-align:right">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" id="login-button">
+      Submit
+    </button>
+    </div>
+  </div>
+  
+  <div class="form-wrapper">
+  
+    <div class="start-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text"><b>DSA<em>504</em></b>  Mobilizer Progress Tracker<span>v1.0</span></h2>
+      </div>
+    
+      <div class="mdl-card__supporting-text">
+        Please select your name to get started!
+      </div>
+      
+      <div class="mdl-card__actions mdl-card--border">
+      
+        <div>
+          <label class="select_label" for="mob_name">Mobilizer</label>
+          <select id="mob_name" >  
+            <option selected="selected">Select your name...</option>
+          </select>
+        </div>
+        
+        <div>
+          <label class="select_label" for="pm_name">Program Member</label>
+          <select id="pm_name" >
+          </select>
+        </div>
+      
+      </div>
+      
+    </div>
+
+  
+  <div class="login-card mdl-card mdl-shadow--2dp">
+    <i class="material-icons md-48">face</i>
+     <span class="pm_label">Program Member Details</span>
+   
+   <div class="pm_details">
+    
+      <ul class="mdl-list">
+        <li>Name: <span id="pm_name_out"></span></li>
+        <li>Phone: <span id="pm_phone_out"></span></li>
+        <li>Email: <span id="pm_email_out"></span></li>
+       </ul>
+      <ul class="mdl-list">
+        <li>Assigned Date: <span id="pm_assigned_date_out"></span></li>
+        <li>Due Date: <span id="pm_due_date_out"></span></li>
+        <li>Status: <span id="pm_status_out"></span></li>
+      </ul>
+    </div>
+  </div>
+  
+  <form id="intake_form">
+  
+  <div class="step_box">
+    <h2>Initial Text</h2>
+    <div class="speech-bubble-text">
+    "Hi <b>[Program Member Name]</b>! This is <b>[Your Name]</b> from New Orleans DSA. We got your info from our site and we'd love to talk to you. Do you have time today or soon for a phone call?"
+    </div>
+    
+    <div class="checkbox_wrap">
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="initial_text_sent" id="initial_text_sent_wrapper">
+      <input type="checkbox" name="initial_text_sent" id="initial_text_sent" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label">Text Sent?</span>
+    </label>
+    </div>
+    
+    <div class="response_text">Program Member Response:</div>
+    <fieldset id="initial_text_response" data-type="intake-el-radio">
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="initial_text_response_1">
+            <input class="mdl-radio__button" type="radio" value="Call Scheduled" id="initial_text_response_1" name="initial_text_response">
+            <span class="mdl-radio__label">Call Scheduled</span>
+          </label>
+          
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="initial_text_response_2">
+            <input class="mdl-radio__button" type="radio" value="No Reply" id="initial_text_response_2" name="initial_text_response">
+            <span class="mdl-radio__label">No Reply</span>
+          </label>
+    </fieldset>
+  </div>
+  
+  <div class="step_box">
+    <h2>Intake Call</h2>
+    
+    <h3>“Hi, is this [program member name]?”</h3>
+    <div class="response_text">Program Member Response:</div>
+    <fieldset id="call_made" data-type="intake-el-radio">
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="call_made_1">
+              <input class="mdl-radio__button" type="radio" value="Yup!" id="call_made_1" name="call_made">
+              <span class="mdl-radio__label">Yup!</span>
+            </label>
+            
+            <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="call_made_2">
+              <input class="mdl-radio__button" type="radio" value="No Answer/Left Message" id="call_made_2" name="call_made">
+              <span class="mdl-radio__label">No Answer/Left Message</span>
+            </label>
+            
+    </fieldset>
+    
+    <h3>Introduce yourself</h3>
+    <div class="speech-bubble">
+    “This is <b>[Your Name]</b> from the DSA New Orleans mobilizers program- I’ve been assigned to you though the program, to act as a point of contact for you to DSA New Orleans, to answer any questions you might have, and help you get involved. First though I’ve just got a couple quick questions, if that’s cool?”
+    </div>
+  
+    <h3>Identify Occupation</h3>
+    <div class="speech-bubble">
+    “Could I get your occupation?"
+    </div>
+    <div class="response_text">Program Member Response:</div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" id="occupation-wrapper">
+      <input class="mdl-textfield__input" type='text' id='occupation' data-type="intake-el-text" />
+      <label class="mdl-textfield__label" for="occupation">Enter Occupation</label>
+    </div>
+    
+    <h3>Identify additional skills/resources</h3>
+    <div class="speech-bubble">
+    “Do you have any additional skills or experience that you’d be interested in contributing- like design, photography, writing, childcare, etc?”
+    </div>
+    <div class="response_text">Program Member Response:</div>
+    <div class="mdl-textfield mdl-js-textfield" id="skills-wrapper">
+      <textarea id="skills" data-type="intake-el-text" class="mdl-textfield__input"></textarea>
+       <label class="mdl-textfield__label" for="skills">Enter Skills\Resources</label>
+    </div>
+  
+    <h3>Identify pre-existing committee or project interest</h3>
+    <div class="speech-bubble">
+    “I’m not sure if you’re familiar with the stuff we’ve been working on or our committees, but if you are, is there a specific committee or project we’re involved in that you know you’d be interested in?”
+    </div>
+    <div class="response_text">Program Member Response:</div>
+    <fieldset id="interests" data-type="intake-el-multi">
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-1">
+        <input type="checkbox" id="intake-el-multi-1" class="mdl-checkbox__input" value="Labor Standing">
+        <span class="mdl-checkbox__label">Labor Standing</span>
+       </label>
+       <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-2">
+        <input type="checkbox" id="intake-el-multi-2" class="mdl-checkbox__input" value="Socialists of Color">
+        <span class="mdl-checkbox__label">Socialists of Color</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-3">
+        <input type="checkbox" id="intake-el-multi-3" class="mdl-checkbox__input" value="Political Education">
+        <span class="mdl-checkbox__label">Political Education</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-4">
+        <input type="checkbox" id="intake-el-multi-4" class="mdl-checkbox__input" value="Communications">
+        <span class="mdl-checkbox__label">Communications</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-5">
+        <input type="checkbox" id="intake-el-multi-5" class="mdl-checkbox__input" value="Healthcare for All">
+        <span class="mdl-checkbox__label">Healthcare for All</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-6">
+        <input type="checkbox" id="intake-el-multi-6" class="mdl-checkbox__input" value="Direct Service/Brake Lights">
+        <span class="mdl-checkbox__label">Direct Service/Brake Lights</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-7">
+        <input type="checkbox" id="intake-el-multi-7" class="mdl-checkbox__input" value="Tech">
+        <span class="mdl-checkbox__label">Tech</span>
+      </label>
+      <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="intake-el-multi-8">
+        <input type="checkbox" id="intake-el-multi-8" class="mdl-checkbox__input" value="Other">
+        <span class="mdl-checkbox__label">Other</span>
+      </label>
+      <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type='text' id='interests-other-text' placeholder='If "Other", please list here' />
+      </div>
+    </fieldset>
+  
+    <h3>Answer any questions</h3>
+    <div class="speech-bubble">
+    “OK, so do you have any questions about DSA?”
+    </div>
+    
+    <em>
+    (If somebody ask a question you’re not sure about, note it, say “Honestly, I’m not sure- let me check on that and get back to you.” and post the question in the #mobilizerdesk channel so you can text back an answer later)
+    <br/>
+    <br/>
+    </em>
+    
+    <div class="speech-bubble">
+    “If you think of any any other questions, just text me at this number.”
+    </div>
+  
+    <h3>Schedule Meetup</h3>
+    <div class="speech-bubble">
+    “Alright, so if you’re still interested in getting involved in DSA, one of the best ways is to come to a <b>[social/general meeting]</b>- I’ll be at the next one at <b>[location]</b> on <b>[date/time]</b>- it’s a great way to meet some of the members, meet the committee stewards/leadership, etc. and see what we’re all about. Think you could make that?”
+    </div>
+    <div class="response_text">Program Member Response:</div>
+    <fieldset id="meetup_scheduled" data-type="intake-el-radio">
+          
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="meetup_scheduled_1">
+              <input class="mdl-radio__button" type="radio" value="Meetup Scheduled" id="meetup_scheduled_1" name="meetup_scheduled">
+              <span class="mdl-radio__label">Meetup Scheduled</span>
+          </label>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="meetup_scheduled_2">
+              <input class="mdl-radio__button" type="radio" value="Can't/Not Interested" id="meetup_scheduled_2" name="meetup_scheduled">
+              <span class="mdl-radio__label">Can't/Not Interested</span>
+          </label>
+          <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="meetup_scheduled_3">
+              <input class="mdl-radio__button" type="radio" value="Other" id="meetup_scheduled_3" name="meetup_scheduled">
+              <span class="mdl-radio__label">Other</span>
+          </label>
+            
+            <div class="mdl-textfield mdl-js-textfield">
+        <input class="mdl-textfield__input" type='text' id='meetup_scheduled-other-text' placeholder='If "Other", please explain here' />
+        </div>
+            
+    </fieldset>
+  
+    <div class="speech-bubble">"Bye, and thanks for your time!"</div>
+  </div>
+  
+  <div class="step_box">
+    <h2>Followup Text (Send 24-48 hours after intake call)</h2>
+    <div class="speech-bubble-text">
+    “Hey <b>[Program Member Name]</b> - was really nice talking to you the other day, just wanted to follow up to make sure you had the details of our <b>[social/general]: [location/date/time]</b>. Hope to see you there!"
+    </div>
+     
+     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="followup_text_sent" id="followup_text_sent_wrapper">
+      <input type="checkbox" name="followup_text_sent" id="followup_text_sent" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label">Text Sent?</span>
+    </label>
+
+  </div>
+  
+  <div class="step_box">
+    <h2>Social/General Meetup</h2>
+    <div class="response_text">Meetup Guidelines</div>
+    <ul>
+      <li>We’ll make an announcement at the event, but <b>find your program members and introduce yourself!</b></li>
+      
+      <li>Keep an open mind and be friendly</li>
+      
+      <li><b>Learn about your program members</b>- their interests, best way to contact, availability, etc</li>
+      
+      <li><b>Make introductions</b>- particularly to members that share interests, professions or are in committees your program member has expressed interest in </li>
+      
+      <li>Explain Slack, how we use it, and <b>ask if the Program Member would like to be added</b></li>
+      
+      <li><b>Explain basic stuff</b>- committee/leadership structures, general meetings, grievance policy, etc</li>
+      
+      <li><b>Answer any questions</b>; if you’re not sure, note and contact #mobilizerdesk (or ask around the event- if the question is pertinent to a specific committee or project, it can be an opportunity to introduce the program member to a active member.)</li>
+    </ul>
+    
+    <div class="response_text">Please check the following:</div>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="attended_meetup" id="attended_meetup_wrapper">
+      <input type="checkbox" name="attended_meetup" id="attended_meetup" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label"> Attended General or Social</span>
+    </label>
+    
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="met_pm" id="met_pm_wrapper">
+      <input type="checkbox" name="met_pm" id="met_pm" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label">Met Program Member</span>
+    </label>
+  
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="add_to_slack" id="add_to_slack_wrapper">
+      <input type="checkbox" name="add_to_slack" id="add_to_slack" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label">Add this Program Member to Slack</span>
+    </label>
+    
+    <div class="response_text">All done? Click here!</div>
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" id="mark_as_done" value="marked-done">Mark as Done!</button>
+  </div>
+  
+  <div class="step_box sketch">
+    <h2>Sketch Alert</h2>
+    <div style="padding-bottom:20px;">If at any point the person you're mobilizing makes you uncomfortable, or if you suspect they may be an infiltrator, cop or other bad actor, please stop the process and click the checkbox below!</div>
+    <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="sketch" id="met_pm_wrapper">
+      <input type="checkbox" name="sketch" id="sketch" data-type="intake-el-bool" class="mdl-checkbox__input">
+      <span class="mdl-checkbox__label"><b>Mark as Sketch</b></span>
+    </label>
+  </div>
+  
+  </form>
+</div>
+
+<div id="snackbar" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<div id="login-snackbar" class="mdl-js-snackbar mdl-snackbar">
+  <div class="mdl-snackbar__text"></div>
+  <button class="mdl-snackbar__action" type="button"></button>
+</div>
+
+<?!= HtmlService.createHtmlOutputFromFile('Javascript').getContent(); ?>
+
+  </body>
+</html>
+
+
