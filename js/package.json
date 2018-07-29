@@ -1,0 +1,11 @@
+{
+  "name": "mobiizers-webapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Steve Price, Trey Daniel",
+  "license": "ISC"
+}

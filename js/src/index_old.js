@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<!-- Load the jQuery and jQuery UI libraries. -->
-<script src="https://code.jquery.com/jquery-1.8.3.min.js"></script>
-
-<!-- -->
-<script>
-
 var spreadsheetData = [];
 var mobilizers = [];
 var programMembers = [];
@@ -455,5 +448,3 @@ function getKeyByValue(object, value) {
     });
   }
 })(jQuery);
-
-</script>
